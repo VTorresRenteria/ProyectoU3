@@ -15,7 +15,7 @@ class Electrodomestico():
         return (f"ID: {self.id}\n"
                 f"Marca: {self.marca}\n"
                 f"modelo: {self.modelo}\n"
-                f"precio: ${self.precio}")
+                f"precio: ${self.precio:,} Pesos")
 
 class Lavadora(Electrodomestico, Gama):
     def __init__(self,id, marca, modelo, precio, capacidad_carga, consumo_agua, ciclos_lavado):
@@ -37,8 +37,6 @@ class Lavadora(Electrodomestico, Gama):
         else:
             return "Alta"
 
-
-
 class Refrigerador(Electrodomestico,Gama):
     def __init__(self,id, marca, modelo, precio, no_puertas,metros_cubicos,pies_capacidad):
         Electrodomestico.__init__(self,id,marca,modelo,precio)
@@ -54,9 +52,9 @@ class Refrigerador(Electrodomestico,Gama):
             return "Alta"
     def __str__(self):
         return (f"{Electrodomestico.__str__(self)}\n"
-                f"Número de puertas:{self.no_puertas}"
-                f"Metros cúbicos: {self.metros_cubicos}"
-                f"Capacidad en pies cúbicos:{self.pies_capacidad}"
+                f"Número de puertas:{self.no_puertas}\n"
+                f"Metros cúbicos: {self.metros_cubicos} metros cúbicos\n"
+                f"Capacidad en pies cúbicos:{self.pies_capacidad} pies cúbicos\n"
                 f"Tipo de gama: {self.tipo_gama()}")
 
 class Microondas(Electrodomestico, Gama):
@@ -66,10 +64,10 @@ class Microondas(Electrodomestico, Gama):
         self.consumo_energia = consumo_energia
         self.medidas = medidas
     def __str__(self):
-        return (f"{Electrodomestico.__str__(self)}"
-                f"Capacidad De Carga: {self.potencia}\n"
-                f"Consumo De Agua: {self.consumo_energia}\n"
-                f"Ciclos De Lavado: {self.medidas}\n"
+        return (f"{Electrodomestico.__str__(self)}\n"
+                f"Potencia: {self.potencia} W\n"
+                f"Consumo De Energia: {self.consumo_energia} W\n"
+                f"Medidas (Ancho, Alto, Profundiad): {self.medidas}\n"
                 f"Tipo de gama: {self.tipo_gama()}")
     def tipo_gama(self):
         if self.potencia < 1000:
@@ -79,499 +77,23 @@ class Microondas(Electrodomestico, Gama):
         else:
             return "Alta"
             
-
-try:
-
-
-    lavadora = Lavadora("1139411095", "LG", "WT18WV6", 13999, 6, 50 ,6)
-    print(lavadora)
-    refrigerador = Refrigerador("324433","toyota","corolla",4322,2,13,213)
-    print(f"\n\n{refrigerador}")
-    microondas = Microondas ("122222","yotoya","rocolla",100,1000,322,131)
-    print(f"\n\n{microondas}")
-
-except Exception as err:
-    print("Ocurrió un error pq usted esun NYE: " + str(err))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print(":D")
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+while True:
+    try:
+        print(f"\n1. Instanciar\n2. Desplegar\n3. Salir")
+        opcion = int(input("\nIngresa la opción: "))
+        if opcion == 1:
+            lavadora = Lavadora("8MWTW2224WJM", "Whirlpool", "8MWTW2224WJM", 13999, 22, 15 ,12)
+            refrigerador = Refrigerador("RF22A4010S9/EM","Samsung","RF22A4010S9/EM",30000,3,0.623,22)
+            microondas = Microondas ("MH1596DIR","LG","NeoChef",4700,1200,1350,"54x32.2x43.3")
+            print("\nSe instanciaron los objetos")
+        elif opcion == 2:
+            print(f"\n\n{lavadora}")
+            print(f"\n\n{refrigerador}")
+            print(f"\n\n{microondas}")
+        elif opcion == 3:
+            print("Saliendo del programa...")
+            break
+        else:
+            print("Opción no válida. Por favor, seleccione una opción del 1 al 3.")
+    except Exception as err:
+        print("Ocurrió el siguiente error: " + str(err))
