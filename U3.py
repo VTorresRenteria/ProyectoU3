@@ -94,7 +94,7 @@ while True:
                 consumo_agua = int(input("ingrese el consumo de agua de la lavadora en litros"))
                 ciclos_lavado = int(input("ingrese el numero de ciclos de lavado de la lavadora"))
                 lavadora = Lavadora(id_lavadora, marca_lavadora, modelo_lavadora, prec_lavadora, capacidad_carga, consumo_agua, ciclos_lavado)     
-                      
+                
         
             elif opcion_insta == 2:
                 id_refrigerador = input("ingrese la id del refrigerador")
@@ -118,8 +118,6 @@ while True:
             else:
         
                 raise ValueError("Error inválido por favor ingrese un número del 1 al 3") 
-        
-                 
                 #lavadora = Lavadora("8MWTW2224WJM", "Whirlpool", "8MWTW2224WJM", 13999, 22, 15 ,12)
                 #refrigerador = Refrigerador("RF22A4010S9/EM","Samsung","RF22A4010S9/EM",30000,3,0.623,22)
                 #microondas = Microondas ("MH1596DIR","LG","NeoChef",4700,1200,1350,"54x32.2x43.3")
@@ -137,7 +135,7 @@ while True:
         print("Error: Debe ingresar un número entero.")
         print("Detalle del error:", error_valor)
         print("Intente de nuevo.\n")
-  
+
     
     except Exception as error_general:
         print("Ha ocurrido un error inesperado.")
