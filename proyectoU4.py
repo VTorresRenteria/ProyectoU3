@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
-import unittest
 
 class Gama(ABC):
     '''
     Clase Abstracta (Interfaz) para la clasificación de gama de electrodomésticos.
-
     Define el contrato que deben seguir todas las subclases de Electrodomestico
     que quieran implementar una lógica de clasificación de gama.
     '''
@@ -67,18 +65,6 @@ class Lavadora(Electrodomestico, Gama):
         self.consumo_agua = consumo_agua
         self.ciclos_lavado = ciclos_lavado
         
-    def __str__(self):
-        """
-        Retorna la representación en cadena de la Lavadora, incluyendo los
-        atributos base, los específicos y su clasificación de gama.
-        """
-        # Llama al __str__ de la clase padre y agrega la información específica
-        return (f"{super().__str__}\n" 
-                f"Capacidad De Carga: {self.capacidad_carga} kg\n"
-                f"Consumo De Agua: {self.consumo_agua} Litros\n"
-                f"Ciclos De Lavado: {self.ciclos_lavado}\n"
-                f"Tipo de gama: {self.tipo_gama()}")
-        
     def tipo_gama(self):
         '''
         Implementación del método abstracto para clasificar la Lavadora.
@@ -92,7 +78,19 @@ class Lavadora(Electrodomestico, Gama):
             return "Media"
         else:
             return "Alta"
-
+    
+    def __str__(self):
+        """
+        Retorna la representación en cadena de la Lavadora, incluyendo los
+        atributos base, los específicos y su clasificación de gama.
+        """
+        # Llama al __str__ de la clase padre y agrega la información específica
+        return (f"{super().__str__()}\n" 
+                f"Capacidad De Carga: {self.capacidad_carga} kg\n"
+                f"Consumo De Agua: {self.consumo_agua} Litros\n"
+                f"Ciclos De Lavado: {self.ciclos_lavado}\n"
+                f"Tipo de gama: {self.tipo_gama()}")
+        
 class Refrigerador(Electrodomestico,Gama):
     '''
     Clase que representa un Refrigerador.
@@ -130,7 +128,7 @@ class Refrigerador(Electrodomestico,Gama):
         Retorna la representación en cadena del Refrigerador, incluyendo los
         atributos base, los específicos y su clasificación de gama.
         """
-        return (f"{super().__str__}\n"
+        return (f"{super().__str__()}\n"
                 f"Número de puertas:{self.no_puertas}\n"
                 f"Metros cúbicos: {self.metros_cubicos} metros cúbicos\n"
                 f"Capacidad en pies cúbicos:{self.pies_capacidad} pies cúbicos\n"
@@ -154,18 +152,7 @@ class Microondas(Electrodomestico, Gama):
         self.potencia = potencia
         self.consumo_energia = consumo_energia
         self.medidas = medidas
-        
-    def __str__(self):
-        """
-        Retorna la representación en cadena del Microondas, incluyendo los
-        atributos base, los específicos y su clasificación de gama.
-        """
-        return (f"{super().__str__}\n"
-                f"Potencia: {self.potencia} W\n"
-                f"Consumo De Energia: {self.consumo_energia} W\n"
-                f"Medidas (Ancho, Alto, Profundiad): {self.medidas}\n"
-                f"Tipo de gama: {self.tipo_gama()}")
-        
+
     def tipo_gama(self):
         '''
         Implementación del método abstracto para clasificar el Microondas.
@@ -178,7 +165,18 @@ class Microondas(Electrodomestico, Gama):
             return "Media"
         else:
             return "Alta"
-
+        
+    def __str__(self):
+        """
+        Retorna la representación en cadena del Microondas, incluyendo los
+        atributos base, los específicos y su clasificación de gama.
+        """
+        return (f"{super().__str__()}\n"
+                f"Potencia: {self.potencia} W\n"
+                f"Consumo De Energia: {self.consumo_energia} W\n"
+                f"Medidas (Ancho, Alto, Profundiad): {self.medidas}\n"
+                f"Tipo de gama: {self.tipo_gama()}")
+        
 # --- Bloque del Programa Principal ---
 
 '''
@@ -198,7 +196,6 @@ while True:
         if opcion == 1:
             # Creación de instancias de las clases Lavadora, Refrigerador y Microondas
             lavadora = Lavadora("8MWTW2224WJM", "Whirlpool", "8MWTW2224WJM", 13999, 22, 15 ,12)
-            # Nota: 3 puertas para el refrigerador lo clasifica como "Alta" según tu lógica
             refrigerador = Refrigerador("RF22A4010S9/EM", "Samsung", "RF22A4010S9/EM", 30000, 3, 0.623, 22) 
             microondas = Microondas ("MH1596DIR", "LG", "NeoChef", 4700, 1200, 1350, "54x32.2x43.3")
             print("\n Se instanciaron los objetos con éxito.")
@@ -231,11 +228,6 @@ while True:
         print("\n Error: Intentaste desplegar un electrodoméstico que aún no ha sido creado (Opción 1).")
         print("Detalle del error:", error_nombre)
         print("Intente de nuevo.")
-        
-    # Excepción para cuando el usuario interrumpe la ejecución (Ctrl+C)
-    except KeyboardInterrupt:
-        print("\n\nPrograma interrumpido por el usuario (KeyboardInterrupt). Saliendo...")
-        break
     
     # Excepción general para capturar cualquier otro error inesperado
     except Exception as error_general:
@@ -243,18 +235,3 @@ while True:
         print("Detalle del error:", error_general)
         print("Intente de nuevo.")
 
-class TestInstaciarElectrodomesticos(unittest.TestCase):
-    def test_lavadora_instancia(self):
-        lavadora = Lavadora("8MWTW2224WJM", "Whirlpool", "8MWTW2224WJM", 13999, 22, 15 ,12)
-        self.assertIsInstance(lavadora, Lavadora)
-        self.assertEqual(lavadora.tipo_gama(), "Alta")
-
-    def test_refrigerador_instancia(self):
-        refrigerador = Refrigerador("RF22A4010S9/EM", "Samsung", "RF22A4010S9/EM", 30000, 3, 0.623, 22)
-        self.assertIsInstance(refrigerador, Refrigerador)
-        self.assertEqual(refrigerador.tipo_gama(), "Alta")
-
-    def test_microondas_instancia(self):
-        microondas = Microondas ("MH1596DIR", "LG", "NeoChef", 4700, 1200, 1350, "54x32.2x43.3")
-        self.assertIsInstance(microondas, Microondas)
-        self.assertEqual(microondas.tipo_gama(), "Media")

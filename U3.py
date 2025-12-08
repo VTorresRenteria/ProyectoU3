@@ -38,7 +38,7 @@ class Lavadora(Electrodomestico, Gama):
             return "Alta"
 
 class Refrigerador(Electrodomestico,Gama):
-    def __init__(self,id, marca, modelo, precio, no_puertas,metros_cubicos,pies_capacidad):
+    def __init__(self,id, marca, modelo, precio, no_puertas, metros_cubicos, pies_capacidad):
         Electrodomestico.__init__(self,id,marca,modelo,precio)
         self.no_puertas = no_puertas
         self.metros_cubicos = metros_cubicos
@@ -128,7 +128,7 @@ while True:
         elif opcion == 3:
             print("Saliendo del programa...")
             break
-        else:
+        else: 
             print("Opción no válida. Por favor, seleccione una opción del 1 al 3.")
         
     except ValueError as error_valor:
